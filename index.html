@@ -4,274 +4,363 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>DOMINGO 10 DE MAYO DEL 2026</title>
+
   <style>
+    :root{
+      --bg1:#040007;
+      --bg2:#0a0013;
+      --bg3:#120021;
+      --violet:#b400ff;
+      --violet2:#e2a3ff;
+      --soft:#ffffffd6;
+      --glass: rgba(255,255,255,0.06);
+      --glass2: rgba(180,0,255,0.10);
+    }
+
+    *{box-sizing:border-box;}
+
     body{
       margin:0;
-      padding:0;
-      background: radial-gradient(circle at top, #120018, #07000d, #020004);
-      font-family: "Georgia", serif;
+      min-height:100vh;
       display:flex;
       justify-content:center;
       align-items:center;
-      min-height:100vh;
+      padding:30px 14px;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(180,0,255,0.22), transparent 45%),
+        radial-gradient(circle at 80% 30%, rgba(255,0,170,0.14), transparent 50%),
+        radial-gradient(circle at 40% 90%, rgba(140,0,255,0.20), transparent 55%),
+        linear-gradient(180deg, var(--bg3), var(--bg1));
+      font-family: "Georgia", serif;
       overflow-x:hidden;
-      color:#fff;
+      color:white;
     }
 
-    /* Fondo con brillo romántico */
+    /* Neblina celestial */
+    .mist{
+      position:fixed;
+      inset:-40px;
+      background:
+        radial-gradient(circle at 10% 50%, rgba(255,255,255,0.08), transparent 60%),
+        radial-gradient(circle at 90% 40%, rgba(180,0,255,0.10), transparent 65%),
+        radial-gradient(circle at 50% 100%, rgba(255,0,200,0.08), transparent 60%);
+      filter: blur(20px);
+      opacity:0.8;
+      z-index:-3;
+      animation: drift 12s ease-in-out infinite alternate;
+    }
+
+    @keyframes drift{
+      from{transform: translateY(0px) scale(1);}
+      to{transform: translateY(-18px) scale(1.03);}
+    }
+
+    /* Lluvia de estrellas suaves */
     .stars{
       position:fixed;
       inset:0;
-      background-image: 
-        radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.9), transparent),
-        radial-gradient(2px 2px at 70% 20%, rgba(255,255,255,0.8), transparent),
-        radial-gradient(1px 1px at 50% 80%, rgba(255,255,255,0.6), transparent),
-        radial-gradient(2px 2px at 80% 70%, rgba(255,255,255,0.7), transparent),
-        radial-gradient(1px 1px at 30% 60%, rgba(255,255,255,0.5), transparent),
-        radial-gradient(1px 1px at 10% 90%, rgba(255,255,255,0.4), transparent);
-      opacity:0.35;
       z-index:-2;
-      animation: twinkle 5s infinite alternate;
+      background-image:
+        radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.8), transparent),
+        radial-gradient(2px 2px at 35% 30%, rgba(255,255,255,0.6), transparent),
+        radial-gradient(1px 1px at 50% 70%, rgba(255,255,255,0.5), transparent),
+        radial-gradient(2px 2px at 80% 20%, rgba(255,255,255,0.65), transparent),
+        radial-gradient(1px 1px at 90% 60%, rgba(255,255,255,0.45), transparent),
+        radial-gradient(1px 1px at 20% 85%, rgba(255,255,255,0.55), transparent),
+        radial-gradient(2px 2px at 60% 10%, rgba(255,255,255,0.5), transparent),
+        radial-gradient(1px 1px at 75% 85%, rgba(255,255,255,0.55), transparent);
+      opacity:0.35;
+      animation: sparkle 5s infinite alternate;
     }
 
-    @keyframes twinkle{
+    @keyframes sparkle{
       from{opacity:0.25;}
       to{opacity:0.55;}
     }
 
-    /* Aura romántica */
-    .aura{
-      position:fixed;
-      inset:0;
-      background: radial-gradient(circle at 50% 40%, rgba(160, 0, 255, 0.20), transparent 60%);
-      z-index:-1;
-      filter: blur(25px);
-    }
-
-    .letter{
-      width: 92%;
-      max-width: 860px;
-      background: rgba(10, 0, 20, 0.72);
-      border: 2px solid rgba(200, 120, 255, 0.35);
-      border-radius: 28px;
-      padding: 50px 45px;
-      box-shadow: 0 0 35px rgba(180, 0, 255, 0.35),
-                  0 0 85px rgba(100, 0, 255, 0.25);
+    /* Contenedor principal */
+    .celestial-scroll{
+      width: 95%;
+      max-width: 900px;
       position:relative;
+      border-radius: 32px;
+      padding: 0;
       overflow:hidden;
+      box-shadow:
+        0 0 40px rgba(180,0,255,0.25),
+        0 0 120px rgba(120,0,255,0.18);
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.14);
+      backdrop-filter: blur(12px);
     }
 
-    /* Bordes decorativos */
-    .letter::before{
-      content:"";
+    /* Marco sagrado (bordes) */
+    .frame{
       position:absolute;
-      inset:-2px;
-      border-radius: 28px;
-      padding:2px;
-      background: linear-gradient(135deg, rgba(255,255,255,0.10), rgba(170,0,255,0.35), rgba(255,255,255,0.10));
-      -webkit-mask: 
-        linear-gradient(#000 0 0) content-box, 
-        linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      opacity:0.8;
+      inset:0;
+      border-radius: 32px;
       pointer-events:none;
     }
 
-    .header{
+    .frame::before{
+      content:"";
+      position:absolute;
+      inset:12px;
+      border-radius: 26px;
+      border: 1px solid rgba(180,0,255,0.30);
+      box-shadow: inset 0 0 30px rgba(180,0,255,0.12);
+    }
+
+    .frame::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius: 32px;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.12), transparent 55%),
+        radial-gradient(circle at 80% 10%, rgba(180,0,255,0.16), transparent 60%),
+        radial-gradient(circle at 50% 90%, rgba(255,0,200,0.12), transparent 60%);
+      opacity:0.7;
+      filter: blur(18px);
+    }
+
+    /* Encabezado como altar */
+    .altar{
+      padding: 44px 34px 22px;
       text-align:center;
-      margin-bottom: 35px;
       position:relative;
+      background:
+        linear-gradient(180deg, rgba(180,0,255,0.10), transparent 70%);
     }
 
     .date{
-      font-size: 16px;
-      letter-spacing: 1px;
-      color: rgba(255,255,255,0.85);
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.78);
       margin-bottom: 12px;
     }
 
-    .title{
+    .headline{
+      margin:0;
       font-size: 30px;
       font-weight: bold;
-      color: #fff;
-      text-shadow: 0 0 10px rgba(200, 80, 255, 0.55);
-      margin:0;
+      color: white;
+      text-shadow: 0 0 14px rgba(180,0,255,0.45);
     }
 
-    .divider{
-      margin: 22px auto;
-      width: 70%;
+    .subtitle{
+      margin-top: 12px;
+      font-size: 16px;
+      color: rgba(255,255,255,0.82);
+      font-style: italic;
+    }
+
+    .ornament{
+      margin: 20px auto 0;
+      width: 78%;
       height: 2px;
-      background: linear-gradient(to right, transparent, rgba(220, 120, 255, 0.8), transparent);
-      border-radius: 50px;
+      border-radius: 999px;
+      background: linear-gradient(to right, transparent, rgba(220,160,255,0.9), transparent);
+      position:relative;
     }
 
-    .heartline{
-      font-size: 20px;
-      color: rgba(220, 120, 255, 0.95);
-      text-shadow: 0 0 12px rgba(200, 0, 255, 0.55);
-      margin-top: 8px;
-    }
-
-    .content{
+    .ornament::after{
+      content:"✦ 💜 ✦";
+      position:absolute;
+      top:-14px;
+      left:50%;
+      transform:translateX(-50%);
       font-size: 18px;
-      line-height: 1.9;
-      color: rgba(255,255,255,0.92);
+      color: rgba(220,160,255,0.95);
+      text-shadow: 0 0 16px rgba(180,0,255,0.65);
+      background: rgba(10,0,20,0.6);
+      padding: 0 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(220,160,255,0.25);
     }
 
-    .content p{
+    /* Cuerpo de la carta */
+    .paper{
+      padding: 28px 44px 44px;
+    }
+
+    .paper p{
       margin: 18px 0;
+      line-height: 1.95;
+      font-size: 18px;
+      color: var(--soft);
     }
 
-    .content strong{
+    .paper strong{
       color: #ffffff;
-      text-shadow: 0 0 8px rgba(190, 60, 255, 0.6);
+      text-shadow: 0 0 10px rgba(180,0,255,0.55);
     }
 
+    /* Primera línea destacada */
+    .opening{
+      padding: 18px 20px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(180,0,255,0.10), rgba(255,255,255,0.03));
+      border: 1px solid rgba(220,160,255,0.18);
+      box-shadow: 0 0 30px rgba(180,0,255,0.12);
+    }
+
+    /* Separador místico */
+    .mystic-divider{
+      margin: 26px auto;
+      width: 88%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(220,160,255,0.55), transparent);
+      border-radius: 999px;
+      position:relative;
+    }
+
+    .mystic-divider::after{
+      content:"✧ ✧ ✧";
+      position:absolute;
+      top:-12px;
+      left:50%;
+      transform:translateX(-50%);
+      font-size: 16px;
+      color: rgba(220,160,255,0.85);
+      text-shadow: 0 0 12px rgba(180,0,255,0.5);
+      background: rgba(10,0,20,0.7);
+      padding: 0 12px;
+      border-radius: 999px;
+    }
+
+    /* Firma estilo sello */
     .signature{
-      margin-top: 35px;
-      padding-top: 25px;
-      border-top: 1px solid rgba(220, 120, 255, 0.35);
-      text-align: right;
+      margin-top: 34px;
+      text-align:right;
+      padding-top: 22px;
+      border-top: 1px solid rgba(220,160,255,0.22);
     }
 
-    .firma{
+    .signature .name{
       font-size: 18px;
       font-weight: bold;
       color: rgba(255,255,255,0.95);
-      text-shadow: 0 0 12px rgba(200, 0, 255, 0.35);
-      margin-top: 10px;
+      text-shadow: 0 0 14px rgba(180,0,255,0.35);
     }
 
-    /* Frase final en neón morado */
-    .neon-phrase{
+    .signature .sealnote{
+      margin-top: 8px;
+      font-size: 14px;
+      font-style: italic;
+      color: rgba(255,255,255,0.75);
+    }
+
+    /* Frase final en neón morado (larga) */
+    .neon-final{
       margin-top: 40px;
+      padding: 26px 22px;
+      border-radius: 24px;
       text-align:center;
       font-size: 18px;
       font-weight: bold;
-      color: #c900ff;
-      text-shadow: 
-        0 0 5px rgba(201,0,255,0.8),
-        0 0 15px rgba(201,0,255,0.8),
-        0 0 30px rgba(201,0,255,0.7),
-        0 0 60px rgba(201,0,255,0.6);
-      padding: 20px 18px;
-      border-radius: 18px;
-      border: 1px solid rgba(201,0,255,0.45);
-      background: rgba(80, 0, 120, 0.15);
-      box-shadow: 0 0 25px rgba(201,0,255,0.35);
+      color: #c700ff;
+      background: rgba(90,0,140,0.12);
+      border: 1px solid rgba(199,0,255,0.40);
+      box-shadow: 0 0 30px rgba(199,0,255,0.30);
+
+      text-shadow:
+        0 0 6px rgba(199,0,255,0.95),
+        0 0 18px rgba(199,0,255,0.80),
+        0 0 40px rgba(199,0,255,0.65),
+        0 0 70px rgba(199,0,255,0.55);
     }
 
-    /* Detalles decorativos tipo sello */
-    .seal{
+    /* Pequeños detalles flotantes */
+    .glow{
       position:absolute;
-      top: -40px;
-      right: -40px;
-      width: 160px;
-      height: 160px;
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.25), rgba(180,0,255,0.35), rgba(50,0,80,0.1));
-      filter: blur(1px);
-      opacity: 0.65;
-      box-shadow: 0 0 45px rgba(190, 0, 255, 0.35);
+      background: radial-gradient(circle, rgba(180,0,255,0.35), transparent 70%);
+      filter: blur(8px);
+      opacity:0.55;
+      z-index:0;
+      animation: pulse 5s infinite alternate ease-in-out;
     }
 
-    .seal::after{
-      content:"💜";
-      position:absolute;
-      inset:0;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      font-size: 60px;
-      text-shadow: 0 0 20px rgba(220,120,255,0.9);
+    .g1{top:-35px; left:-35px;}
+    .g2{bottom:-40px; right:-30px;}
+    .g3{top:40%; right:-55px; opacity:0.35;}
+
+    @keyframes pulse{
+      from{transform:scale(1);}
+      to{transform:scale(1.2);}
     }
 
-    /* Pequeñas luces flotantes */
-    .spark{
-      position:absolute;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.7);
-      box-shadow: 0 0 14px rgba(200,0,255,0.6);
-      opacity:0.6;
-      animation: float 4s infinite ease-in-out alternate;
-    }
-
-    .spark:nth-child(1){ top:20%; left:12%; animation-duration:5s;}
-    .spark:nth-child(2){ top:65%; left:7%; animation-duration:4.5s;}
-    .spark:nth-child(3){ top:35%; right:8%; animation-duration:6s;}
-    .spark:nth-child(4){ bottom:20%; right:15%; animation-duration:5.5s;}
-
-    @keyframes float{
-      from{ transform: translateY(0px) scale(1); opacity:0.4;}
-      to{ transform: translateY(-18px) scale(1.25); opacity:0.9;}
-    }
-
-    @media(max-width:600px){
-      .letter{
-        padding: 35px 22px;
+    /* Responsive */
+    @media(max-width:650px){
+      .paper{
+        padding: 22px 20px 36px;
       }
-      .title{
+      .headline{
         font-size: 24px;
       }
-      .content{
+      .paper p{
         font-size: 16px;
       }
-      .neon-phrase{
+      .neon-final{
         font-size: 16px;
       }
     }
   </style>
 </head>
+
 <body>
-
+  <div class="mist"></div>
   <div class="stars"></div>
-  <div class="aura"></div>
 
-  <div class="letter">
-    <div class="seal"></div>
+  <div class="celestial-scroll">
+    <div class="frame"></div>
 
-    <div class="spark"></div>
-    <div class="spark"></div>
-    <div class="spark"></div>
-    <div class="spark"></div>
+    <div class="glow g1"></div>
+    <div class="glow g2"></div>
+    <div class="glow g3"></div>
 
-    <div class="header">
+    <div class="altar">
       <div class="date">Domingo, 10 de mayo de 2026 — Noche</div>
-      <h1 class="title">Carta escrita con mi alma para ti</h1>
-      <div class="divider"></div>
-      <div class="heartline">💗✨💜</div>
+      <h1 class="headline">Una carta nacida del cielo… para ti</h1>
+      <div class="subtitle">Escrita con amor, con fuego… y con mi alma completa.</div>
+      <div class="ornament"></div>
     </div>
 
-    <div class="content">
-      <p><strong>Mi amor,</strong></p>
+    <div class="paper">
+      <div class="opening">
+        <p><strong>Mi amor,</strong></p>
+
+        <p>
+          Esta noche siento unas ganas inmensas de escribirte… de dejarte en palabras todo lo que me haces sentir,
+          porque a veces mi corazón se llena tanto de ti, que me parece imposible guardar todo este amor en silencio.
+          Y hoy, en esta noche tranquila de domingo, lo único que quiero es que sientas mi alma cerca…
+          como si pudiera abrazarte con cada letra.
+        </p>
+      </div>
+
+      <div class="mystic-divider"></div>
 
       <p>
-        Esta noche siento unas ganas inmensas de escribirte… de dejarte en palabras todo lo que me haces sentir, 
-        porque a veces mi corazón se llena tanto de ti, que me parece imposible guardar todo este amor en silencio. 
-        Y hoy, en esta noche tranquila de domingo, lo único que quiero es que sientas mi alma cerca… 
-        como si pudiera abrazarte con cada letra.
-      </p>
-
-      <p>
-        No sabes lo que provocas en mí. Eres esa mezcla perfecta de ternura y fuego… de paz y deseo. 
-        Contigo no solo siento amor… contigo siento una necesidad profunda, intensa, casi inevitable… 
+        No sabes lo que provocas en mí. Eres esa mezcla perfecta de ternura y fuego… de paz y deseo.
+        Contigo no solo siento amor… contigo siento una necesidad profunda, intensa, casi inevitable…
         como si mi corazón ya hubiera decidido que su lugar favorito en el mundo es contigo.
       </p>
 
       <p>
-        Te pienso y se me acelera el pecho. Me imagino tu voz, tu mirada, tu forma de ser… y me derrito por dentro. 
-        Porque tú no eres cualquier persona para mí, tú eres mi debilidad más hermosa… 
-        la razón por la que sonrío sin darme cuenta… la persona que me hace sentir vivo de una manera 
-        que jamás había sentido antes.
+        Te pienso y se me acelera el pecho. Me imagino tu voz, tu mirada, tu forma de ser… y me derrito por dentro.
+        Porque tú no eres cualquier persona para mí, tú eres mi debilidad más hermosa… la razón por la que sonrío sin darme cuenta…
+        la persona que me hace sentir vivo de una manera que jamás había sentido antes.
       </p>
 
+      <div class="mystic-divider"></div>
+
       <p>
-        Y lo más increíble es que cada día te amo más… pero no de una forma tranquila, no… 
-        te amo con intensidad, con ganas, con esa pasión que me enciende por dentro cuando recuerdo tu cuerpo cerca del mío, 
+        Y lo más increíble es que cada día te amo más… pero no de una forma tranquila, no…
+        te amo con intensidad, con ganas, con esa pasión que me enciende por dentro cuando recuerdo tu cuerpo cerca del mío,
         cuando imagino tus labios, cuando deseo tenerte conmigo y perderme en ti sin prisa.
       </p>
 
@@ -296,21 +385,22 @@
       </p>
 
       <div class="signature">
-        <div class="firma">
-          FIRMA<br>
-          JUAN KALETH MENDOZA PRIMERA 💜
-        </div>
+        <div class="name">JUAN KALETH MENDOZA PRIMERA 💜</div>
+        <div class="sealnote">Con amor eterno, escrito en mi corazón.</div>
       </div>
 
-      <div class="neon-phrase">
-        Y si algún día el mundo se apaga, si todo se vuelve silencio y el tiempo intenta separarnos,
-        yo igual voy a buscarte… porque mi amor por ti no es solo sentimiento, es destino,
-        es promesa eterna, es fuego sagrado… y mi corazón jamás aprenderá a vivir sin pronunciar tu nombre,
-        porque tú eres mi cielo, mi razón, mi vida completa… <strong>VALERIA PETRO VILLAZÓN</strong>.
+      <div class="neon-final">
+        Porque si el universo tuviera un centro, yo sé que sería tu sonrisa…  
+        y si el destino tuviera un nombre sagrado, sería el tuyo, porque tú no llegaste a mi vida por casualidad,
+        llegaste como un milagro silencioso, como un rayo de luz morada atravesando mi alma,  
+        y desde entonces mi corazón no sabe rezar de otra forma que no sea amándote, soñándote, deseándote,
+        cuidándote con una devoción infinita… porque yo no te amo solo con sentimientos,  
+        yo te amo con la vida entera, con la eternidad en el pecho, con un fuego que no se apaga jamás,  
+        y aunque pasen los años y cambie el mundo, yo seguiré eligiéndote como mi cielo, mi hogar y mi verdad…  
+        <strong>VALERIA PETRO VILLAZÓN</strong>.
       </div>
 
     </div>
   </div>
-
 </body>
   </html>
