@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DOMINGO 10 DE MAYO DEL 2026</title>
+  <style>
+    body{
+      margin:0;
+      padding:0;
+      background: radial-gradient(circle at top, #120018, #07000d, #020004);
+      font-family: "Georgia", serif;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      min-height:100vh;
+      overflow-x:hidden;
+      color:#fff;
+    }
+
+    /* Fondo con brillo romántico */
+    .stars{
+      position:fixed;
+      inset:0;
+      background-image: 
+        radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.9), transparent),
+        radial-gradient(2px 2px at 70% 20%, rgba(255,255,255,0.8), transparent),
+        radial-gradient(1px 1px at 50% 80%, rgba(255,255,255,0.6), transparent),
+        radial-gradient(2px 2px at 80% 70%, rgba(255,255,255,0.7), transparent),
+        radial-gradient(1px 1px at 30% 60%, rgba(255,255,255,0.5), transparent),
+        radial-gradient(1px 1px at 10% 90%, rgba(255,255,255,0.4), transparent);
+      opacity:0.35;
+      z-index:-2;
+      animation: twinkle 5s infinite alternate;
+    }
+
+    @keyframes twinkle{
+      from{opacity:0.25;}
+      to{opacity:0.55;}
+    }
+
+    /* Aura romántica */
+    .aura{
+      position:fixed;
+      inset:0;
+      background: radial-gradient(circle at 50% 40%, rgba(160, 0, 255, 0.20), transparent 60%);
+      z-index:-1;
+      filter: blur(25px);
+    }
+
+    .letter{
+      width: 92%;
+      max-width: 860px;
+      background: rgba(10, 0, 20, 0.72);
+      border: 2px solid rgba(200, 120, 255, 0.35);
+      border-radius: 28px;
+      padding: 50px 45px;
+      box-shadow: 0 0 35px rgba(180, 0, 255, 0.35),
+                  0 0 85px rgba(100, 0, 255, 0.25);
+      position:relative;
+      overflow:hidden;
+    }
+
+    /* Bordes decorativos */
+    .letter::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      border-radius: 28px;
+      padding:2px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.10), rgba(170,0,255,0.35), rgba(255,255,255,0.10));
+      -webkit-mask: 
+        linear-gradient(#000 0 0) content-box, 
+        linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity:0.8;
+      pointer-events:none;
+    }
+
+    .header{
+      text-align:center;
+      margin-bottom: 35px;
+      position:relative;
+    }
+
+    .date{
+      font-size: 16px;
+      letter-spacing: 1px;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 12px;
+    }
+
+    .title{
+      font-size: 30px;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 0 0 10px rgba(200, 80, 255, 0.55);
+      margin:0;
+    }
+
+    .divider{
+      margin: 22px auto;
+      width: 70%;
+      height: 2px;
+      background: linear-gradient(to right, transparent, rgba(220, 120, 255, 0.8), transparent);
+      border-radius: 50px;
+    }
+
+    .heartline{
+      font-size: 20px;
+      color: rgba(220, 120, 255, 0.95);
+      text-shadow: 0 0 12px rgba(200, 0, 255, 0.55);
+      margin-top: 8px;
+    }
+
+    .content{
+      font-size: 18px;
+      line-height: 1.9;
+      color: rgba(255,255,255,0.92);
+    }
+
+    .content p{
+      margin: 18px 0;
+    }
+
+    .content strong{
+      color: #ffffff;
+      text-shadow: 0 0 8px rgba(190, 60, 255, 0.6);
+    }
+
+    .signature{
+      margin-top: 35px;
+      padding-top: 25px;
+      border-top: 1px solid rgba(220, 120, 255, 0.35);
+      text-align: right;
+    }
+
+    .firma{
+      font-size: 18px;
+      font-weight: bold;
+      color: rgba(255,255,255,0.95);
+      text-shadow: 0 0 12px rgba(200, 0, 255, 0.35);
+      margin-top: 10px;
+    }
+
+    /* Frase final en neón morado */
+    .neon-phrase{
+      margin-top: 40px;
+      text-align:center;
+      font-size: 18px;
+      font-weight: bold;
+      color: #c900ff;
+      text-shadow: 
+        0 0 5px rgba(201,0,255,0.8),
+        0 0 15px rgba(201,0,255,0.8),
+        0 0 30px rgba(201,0,255,0.7),
+        0 0 60px rgba(201,0,255,0.6);
+      padding: 20px 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(201,0,255,0.45);
+      background: rgba(80, 0, 120, 0.15);
+      box-shadow: 0 0 25px rgba(201,0,255,0.35);
+    }
+
+    /* Detalles decorativos tipo sello */
+    .seal{
+      position:absolute;
+      top: -40px;
+      right: -40px;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.25), rgba(180,0,255,0.35), rgba(50,0,80,0.1));
+      filter: blur(1px);
+      opacity: 0.65;
+      box-shadow: 0 0 45px rgba(190, 0, 255, 0.35);
+    }
+
+    .seal::after{
+      content:"💜";
+      position:absolute;
+      inset:0;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      font-size: 60px;
+      text-shadow: 0 0 20px rgba(220,120,255,0.9);
+    }
+
+    /* Pequeñas luces flotantes */
+    .spark{
+      position:absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.7);
+      box-shadow: 0 0 14px rgba(200,0,255,0.6);
+      opacity:0.6;
+      animation: float 4s infinite ease-in-out alternate;
+    }
+
+    .spark:nth-child(1){ top:20%; left:12%; animation-duration:5s;}
+    .spark:nth-child(2){ top:65%; left:7%; animation-duration:4.5s;}
+    .spark:nth-child(3){ top:35%; right:8%; animation-duration:6s;}
+    .spark:nth-child(4){ bottom:20%; right:15%; animation-duration:5.5s;}
+
+    @keyframes float{
+      from{ transform: translateY(0px) scale(1); opacity:0.4;}
+      to{ transform: translateY(-18px) scale(1.25); opacity:0.9;}
+    }
+
+    @media(max-width:600px){
+      .letter{
+        padding: 35px 22px;
+      }
+      .title{
+        font-size: 24px;
+      }
+      .content{
+        font-size: 16px;
+      }
+      .neon-phrase{
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="stars"></div>
+  <div class="aura"></div>
+
+  <div class="letter">
+    <div class="seal"></div>
+
+    <div class="spark"></div>
+    <div class="spark"></div>
+    <div class="spark"></div>
+    <div class="spark"></div>
+
+    <div class="header">
+      <div class="date">Domingo, 10 de mayo de 2026 — Noche</div>
+      <h1 class="title">Carta escrita con mi alma para ti</h1>
+      <div class="divider"></div>
+      <div class="heartline">💗✨💜</div>
+    </div>
+
+    <div class="content">
+      <p><strong>Mi amor,</strong></p>
+
+      <p>
+        Esta noche siento unas ganas inmensas de escribirte… de dejarte en palabras todo lo que me haces sentir, 
+        porque a veces mi corazón se llena tanto de ti, que me parece imposible guardar todo este amor en silencio. 
+        Y hoy, en esta noche tranquila de domingo, lo único que quiero es que sientas mi alma cerca… 
+        como si pudiera abrazarte con cada letra.
+      </p>
+
+      <p>
+        No sabes lo que provocas en mí. Eres esa mezcla perfecta de ternura y fuego… de paz y deseo. 
+        Contigo no solo siento amor… contigo siento una necesidad profunda, intensa, casi inevitable… 
+        como si mi corazón ya hubiera decidido que su lugar favorito en el mundo es contigo.
+      </p>
+
+      <p>
+        Te pienso y se me acelera el pecho. Me imagino tu voz, tu mirada, tu forma de ser… y me derrito por dentro. 
+        Porque tú no eres cualquier persona para mí, tú eres mi debilidad más hermosa… 
+        la razón por la que sonrío sin darme cuenta… la persona que me hace sentir vivo de una manera 
+        que jamás había sentido antes.
+      </p>
+
+      <p>
+        Y lo más increíble es que cada día te amo más… pero no de una forma tranquila, no… 
+        te amo con intensidad, con ganas, con esa pasión que me enciende por dentro cuando recuerdo tu cuerpo cerca del mío, 
+        cuando imagino tus labios, cuando deseo tenerte conmigo y perderme en ti sin prisa.
+      </p>
+
+      <p>
+        Esta noche solo quiero que lo sepas:<br>
+        <strong>yo te amo con todo lo que soy… y te deseo con toda mi alma.</strong><br>
+        Quiero cuidarte, adorarte, besarte lento… y hacerte sentir la mujer más amada del mundo.
+      </p>
+
+      <p>
+        Porque tú lo eres para mí.<br>
+        Tú eres mi amor… mi obsesión bonita… mi tentación más dulce… y mi sueño hecho realidad.
+      </p>
+
+      <p>
+        Buenas noches, mi vida…<br>
+        ojalá pudieras sentir mis brazos rodeándote ahora mismo, porque si estuvieras aquí, no te soltaría jamás.
+      </p>
+
+      <p>
+        <strong>Te amo con una intensidad que no se puede explicar… solo se puede sentir.</strong> 💗✨
+      </p>
+
+      <div class="signature">
+        <div class="firma">
+          FIRMA<br>
+          JUAN KALETH MENDOZA PRIMERA 💜
+        </div>
+      </div>
+
+      <div class="neon-phrase">
+        Y si algún día el mundo se apaga, si todo se vuelve silencio y el tiempo intenta separarnos,
+        yo igual voy a buscarte… porque mi amor por ti no es solo sentimiento, es destino,
+        es promesa eterna, es fuego sagrado… y mi corazón jamás aprenderá a vivir sin pronunciar tu nombre,
+        porque tú eres mi cielo, mi razón, mi vida completa… <strong>VALERIA PETRO VILLAZÓN</strong>.
+      </div>
+
+    </div>
+  </div>
+
+</body>
+  </html>
